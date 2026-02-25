@@ -113,7 +113,7 @@ void deleteContact(vector<Contact>& contacts) {
 
 int main() {
     vector<Contact> contacts;
-    int choice;
+    int choice = 0;
 
     do {
         cout << "\n===== Contact List Menu =====\n";
@@ -124,7 +124,12 @@ int main() {
         cout << "5. Sort Contacts\n";
         cout << "6. Exit\n";
         cout << "Enter choice: ";
-        cin >> choice;
+        if (!(cin >> choice)) {
+            cout << "Invalid input. Please enter a number from 1 to 6.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         switch (choice) {
             case 1:
@@ -147,6 +152,7 @@ int main() {
                 break;
             default:
                 cout << "Invalid choice. Try again.\n";
+                break;
         }
 
     } while (choice != 6);
